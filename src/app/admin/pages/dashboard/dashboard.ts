@@ -10,8 +10,6 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DashboardService, CardData, ChartPeriodData } from './dashboard.service';
 
-declare var ApexCharts: any;
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -25,6 +23,14 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
   formattedDate: string = '';
   activePeriod: 'today' | 'week' | 'month' | 'year' = 'month';
   cardData: CardData | null = null;
+
+  // Dynamic transaction counts based on active period
+  private readonly transactionCounts = {
+    today: 45,
+    week: 280,
+    month: 1250,
+    year: 14850
+  };
 
   private chart: any = null;
   private readonly isBrowser: boolean;
@@ -74,6 +80,10 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  public getTransactionCount(): number {
+    return this.transactionCounts[this.activePeriod];
+  }
+
   private loadStatistics(): void {
     this.dashboardService.getCardData().subscribe({
       next: (data: CardData) => {
@@ -92,7 +102,6 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
       const script = document.createElement('script');
-      // Direct CDN link to the minified ApexCharts build to ensure correct resolution
       script.src = 'https://cdn.jsdelivr.net/npm/apexcharts/dist/apexcharts.min.js';
       script.async = true;
       script.onload = () => resolve();
@@ -108,6 +117,14 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
     const chartElement = document.querySelector('#transaction-chart');
     if (!chartElement) {
       console.warn('Transaction chart element not found in DOM.');
+      return;
+    }
+
+    // Safely check window for ApexCharts constructor without referencing bare variable to avoid ReferenceError
+    const ApexChartsConstructor = typeof window !== 'undefined' ? (window as any).ApexCharts : null;
+    if (!ApexChartsConstructor) {
+      // Retry in 50ms if script load is complete but window property is not initialized yet
+      setTimeout(() => this.initChart(), 50);
       return;
     }
 
@@ -181,8 +198,6 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
         if (this.chart) {
           this.chart.destroy();
         }
-        // Access ApexCharts from the global window context to guarantee compatibility
-        const ApexChartsConstructor = (window as any).ApexCharts || ApexCharts;
         this.chart = new ApexChartsConstructor(chartElement, options);
         this.chart.render();
       },

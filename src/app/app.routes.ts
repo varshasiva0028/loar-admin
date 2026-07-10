@@ -5,7 +5,7 @@ import { AdminLayout } from './admin/layout/admin-layout/admin-layout';
 import { Dashboard } from './admin/pages/dashboard/dashboard';
 import { Transaction } from './admin/pages/transaction/transaction';
 import { Users } from './admin/pages/users/users';
-import { MyAccountService } from './admin/pages/myaccount/myaccount';
+import { MyAccount } from './admin/pages/myaccount/myaccount';
 import { Reports } from './admin/pages/reports/reports';
 import { Settings } from './admin/pages/settings/settings';
 export const routes: Routes = [

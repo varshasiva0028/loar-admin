@@ -67,7 +67,7 @@
 
 .nav-pills .nav-link.active {
   color: #fff !important;
-  background-color: #198754 !important; /* Matches green layout theme */
+  background-color: #198754 !important;
   box-shadow: 0 4px 8px rgba(25, 135, 84, 0.15);
 }
 
