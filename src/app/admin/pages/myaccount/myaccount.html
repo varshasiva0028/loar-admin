@@ -1,0 +1,123 @@
+<div class="myaccount-content px-1 py-1">
+  <!-- Header Section -->
+  <div class="mb-4">
+    <h1 class="h3 fw-bold text-dark mb-1" style="font-size: 1.5rem;">My Account</h1>
+    <p class="text-secondary m-0" style="font-size: 0.85rem;">Manage your profile information.</p>
+  </div>
+
+  <!-- Profile Card Container -->
+  <div class="row" *ngIf="profile">
+    <div class="col-lg-8 col-xl-6">
+      <div class="card shadow-sm rounded-4 border-0 overflow-hidden">
+        
+        <!-- Profile Header with Avatar -->
+        <div class="card-header bg-success-subtle-custom border-0 py-4 text-center">
+          <div class="avatar-container mb-3">
+            <img 
+              [src]="profile.profileImage" 
+              alt="Avatar" 
+              class="rounded-circle shadow-sm bg-white p-1 border border-light"
+              style="width: 100px; height: 100px; object-fit: cover;"
+            />
+          </div>
+          <h4 class="fw-bold text-dark mb-0 fs-5">{{ profile.username }}</h4>
+          <span class="text-secondary small">{{ profile.email }}</span>
+        </div>
+
+        <!-- Card Body Content -->
+        <div class="card-body p-4">
+          
+          <!-- Read-Only View -->
+          <div *ngIf="!isEditing">
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-light">
+                <span class="text-secondary fw-medium small">Username</span>
+                <span class="text-dark fw-semibold small">{{ profile.username }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-light">
+                <span class="text-secondary fw-medium small">Email ID</span>
+                <span class="text-dark fw-semibold small">{{ profile.email }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-light">
+                <span class="text-secondary fw-medium small">NBFC Name</span>
+                <span class="text-dark fw-semibold small">{{ profile.nbfcName }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-light">
+                <span class="text-secondary fw-medium small">Current Plan</span>
+                <span class="badge px-3 py-2 rounded-pill shadow-xs" [ngClass]="getPlanBadgeClass(profile.plan)" style="font-size: 0.8rem;">
+                  {{ profile.plan }}
+                </span>
+              </li>
+            </ul>
+
+            <div class="text-center pt-2">
+              <button class="btn btn-success px-4 py-2 rounded-3 fw-semibold shadow-sm hover-lift d-inline-flex align-items-center gap-2" (click)="startEditing()">
+                <i class="bi bi-pencil-square fs-6"></i>
+                <span>Edit Profile</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Edit Mode View -->
+          <div *ngIf="isEditing">
+            <div class="mb-3">
+              <label class="form-label text-secondary fw-semibold small mb-1">Username</label>
+              <input 
+                type="text" 
+                class="form-control rounded-3 py-2.5 fs-7" 
+                #usernameInput 
+                [value]="tempUsername" 
+                placeholder="Enter name"
+              />
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label text-secondary fw-semibold small mb-1">Email ID</label>
+              <input 
+                type="email" 
+                class="form-control rounded-3 py-2.5 fs-7" 
+                #emailInput 
+                [value]="tempEmail" 
+                placeholder="Enter email"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-secondary fw-semibold small mb-1">NBFC Name</label>
+              <input 
+                type="text" 
+                class="form-control rounded-3 py-2.5 fs-7" 
+                #nbfcInput 
+                [value]="tempNbfcName" 
+                placeholder="Enter NBFC Name"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label text-secondary fw-semibold small mb-1">Subscription Plan</label>
+              <select class="form-select rounded-3 py-2.5 fs-7 text-dark" #planSelect [value]="tempPlan">
+                <option value="Basic">Basic</option>
+                <option value="Professional">Professional</option>
+                <option value="Premium">Premium</option>
+                <option value="Enterprise">Enterprise</option>
+              </select>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top border-light">
+              <button class="btn btn-outline-secondary px-3 py-2 rounded-3 fw-semibold" (click)="cancelEditing()">
+                Cancel
+              </button>
+              <button 
+                class="btn btn-success px-4 py-2 rounded-3 fw-semibold shadow-sm" 
+                (click)="saveProfile(usernameInput, emailInput, nbfcInput, planSelect)"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

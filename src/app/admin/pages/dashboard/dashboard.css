@@ -1,0 +1,78 @@
+/* Custom Top Borders */
+.border-top-success-custom {
+  border-top: 4px solid #198754 !important;
+}
+
+.border-top-warning-custom {
+  border-top: 4px solid #ffc107 !important;
+}
+
+.border-top-primary-custom {
+  border-top: 4px solid #0d6efd !important;
+}
+
+/* Custom Light Backgrounds resembling screenshot */
+.bg-success-subtle-custom {
+  background-color: #f4faf6 !important;
+}
+
+.bg-warning-subtle-custom {
+  background-color: #fffbf0 !important;
+}
+
+.bg-primary-subtle-custom {
+  background-color: #f4f8ff !important;
+}
+
+/* Icon Box Style */
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-box.bg-success {
+  background-color: #198754 !important;
+}
+
+.icon-box.bg-warning {
+  background-color: #ffc107 !important;
+}
+
+.icon-box.bg-primary {
+  background-color: #0d6efd !important;
+}
+
+/* Hover Lift Effect */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Navigation Pills Tweaks */
+.nav-pills .nav-link {
+  color: #555;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.nav-pills .nav-link.active {
+  color: #fff !important;
+  background-color: #198754 !important; /* Matches green layout theme */
+  box-shadow: 0 4px 8px rgba(25, 135, 84, 0.15);
+}
+
+/* Ensure ApexCharts is clean & fills container */
+#transaction-chart {
+  min-height: 320px;
+  margin-top: 10px;
+}

@@ -1,0 +1,96 @@
+<!---- Fixed Sidebar ---->
+<div
+  class="position-fixed top-0 start-0 vh-100 bg-white border-end shadow d-flex flex-column p-3"
+  style="width:240px; z-index:1030;">
+  <!---- Logo ---->
+  <div class="text-center my-3">
+    <div
+      class="mx-auto mb-2 d-flex align-items-center justify-content-center bg-success bg-gradient text-white rounded-3 shadow-sm"
+      style="width:48px; height:48px; font-size:20px;">
+      <i class="bi bi-bank2"></i>
+    </div>
+    <span class="fw-bold text-success small">
+      ADMIN PORTAL
+    </span>
+  </div>
+  <hr class="text-muted opacity-25 my-2">
+  <!---- Navigation ---->
+  <nav class="nav flex-column gap-2 flex-grow-1">
+    <!---- Dashboard ---->
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="bg-success text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
+      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
+        <i class="bi bi-grid-fill fs-5"></i>
+      </span>
+      <span>Dashboard</span>
+    </a>
+    <!---- Transaction ---->
+    <a
+      routerLink="/transaction"
+      routerLinkActive="bg-success text-white"
+      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
+
+      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
+        <i class="bi bi-arrow-left-right fs-5"></i>
+      </span>
+      <span>Transaction</span>
+    </a>
+    <!---- Users ---->
+    <a
+      routerLink="/users"
+      routerLinkActive="bg-success text-white"
+      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
+      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
+        <i class="bi bi-people-fill fs-5"></i>
+      </span>
+      <span>Users</span>
+    </a>
+
+    <!---- My Account ---->
+    <a
+     routerLink="/myaccount"
+      routerLinkActive="bg-success text-white"
+      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
+      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
+        <i class="bi bi-person-circle fs-5"></i>
+      </span>
+      <span>My Account</span>
+    </a>
+
+    <!---- Reports ---->
+
+    <a
+      routerLink="/reports"
+      routerLinkActive="bg-success text-white"
+      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
+      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
+        <i class="bi bi-bar-chart-line-fill fs-5"></i>
+      </span>
+
+      <span>Reports</span>
+
+    </a>
+    <!---- Settings ---->
+    <a
+      routerLink="/settings"
+      routerLinkActive="bg-success text-white"
+      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
+      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
+        <i class="bi bi-gear-fill fs-5"></i>
+      </span>
+      <span>Settings</span>
+    </a>
+  </nav>
+  <!---- Logout ---->
+  <div class="mt-auto">
+    <hr class="text-muted opacity-25 my-3">
+    <button
+      class="btn btn-outline-danger border-0 text-start d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold w-100 transition-btn">
+      <i class="bi bi-box-arrow-right fs-5"></i>
+      <span>Logout</span>
+    </button>
+  </div>
+</div>

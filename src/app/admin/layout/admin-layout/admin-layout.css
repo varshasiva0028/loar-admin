@@ -1,0 +1,23 @@
+:host {
+    display: block;
+}
+
+.dashboard-wrapper {
+    width: 100%;
+    max-width: calc(100% - 240px); /* Leave exactly 240px space for the fixed sidebar */
+    min-height: calc(100vh - 2rem);
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 32px;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .08);
+    overflow: hidden;
+    transition: max-width 0.2s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .dashboard-wrapper {
+        max-width: 100%; /* Take full width when sidebar is collapsed/hidden on smaller viewports */
+        padding: 20px;
+    }
+}
