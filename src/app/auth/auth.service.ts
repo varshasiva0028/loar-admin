@@ -9,14 +9,21 @@ export class AuthService {
   constructor() {}
 
   public login(role: 'admin' | 'superadmin'): void {
-    localStorage.setItem(this.ROLE_KEY, role);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(this.ROLE_KEY, role);
+    }
   }
 
   public logout(): void {
-    localStorage.removeItem(this.ROLE_KEY);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem(this.ROLE_KEY);
+    }
   }
 
   public getRole(): 'admin' | 'superadmin' | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
     const role = localStorage.getItem(this.ROLE_KEY);
     if (role === 'admin' || role === 'superadmin') {
       return role;

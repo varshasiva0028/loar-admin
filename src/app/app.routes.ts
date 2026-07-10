@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './auth.guard';
+import { authGuard } from './auth/auth-guard';
 
 // Admin layout & login
 import { AdminLayout } from './admin/layout/admin-layout/admin-layout';
@@ -15,14 +15,14 @@ import { Reports as AdminReports } from './admin/pages/reports/reports';
 import { Settings as AdminSettings } from './admin/pages/settings/settings';
 
 // Super Admin layout & login
-import { SrAdminLayout } from './admin/layout/sradmin-layout/sradmin-layout';
+import { SrAdminLayout } from './sradmin/layout/sradmin-layout/sradmin-layout';
 import { SrLogin } from './sradmin/layout/login/login';
 
 // Super Admin pages
 import { Dashboard as SrDashboard } from './sradmin/pages/dashboard/dashboard';
 import { Nbfc } from './sradmin/pages/nbfc/nbfc';
 import { Notification as SrNotification } from './sradmin/pages/notification/notification';
-import { MyAccount as SrMyAccount } from './sradmin/pages/myaccount/myaccount';
+import { Myaccount as SrMyAccount } from './sradmin/pages/myaccount/myaccount';
 import { Reports as SrReports } from './sradmin/pages/reports/reports';
 import { Settings as SrSettings } from './sradmin/pages/settings/settings';
 
