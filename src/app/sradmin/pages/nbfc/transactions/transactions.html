@@ -1,0 +1,174 @@
+<div class="transaction-content px-1 py-1">
+  <!-- Header Section with View Toggle -->
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <div>
+      <button class="btn btn-outline-secondary rounded-3 d-inline-flex align-items-center gap-2 mb-3"
+              (click)="goBack()">
+          <i class="bi bi-arrow-left"></i>
+          <span>Back</span>
+      </button>
+      <h1 class="h3 fw-bold text-dark mb-1" style="font-size: 1.5rem;">Transactions</h1>
+      <p class="text-secondary m-0" style="font-size: 0.85rem;">Monitor and manage all user transactions.</p>
+    </div>
+    <!-- Toggle View Pills -->
+    <div>
+      <ul class="nav nav-pills gap-1 bg-light p-1 rounded-3" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link px-3 py-1.5 rounded-3 fw-semibold border-0" 
+                  [class.active]="activeView === 'table'"
+                  (click)="setView('table')" 
+                  style="font-size: 0.85rem;"
+                  type="button">Table View</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link px-3 py-1.5 rounded-3 fw-semibold border-0" 
+                  [class.active]="activeView === 'graph'"
+                  (click)="setView('graph')" 
+                  style="font-size: 0.85rem;"
+                  type="button">Analytics View</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TABLE VIEW -->
+  <div *ngIf="activeView === 'table'">
+    <!-- Sticky Search Bar Section -->
+    <div class="sticky-top bg-white z-3 pt-1 pb-2" style="top: -32px; margin-top: -8px;">
+      <div class="card shadow-sm rounded-4 border-0 mb-4 p-2">
+        <div class="card-body p-2">
+          <div class="input-group search-input-group">
+            <span class="input-group-text bg-white text-muted ps-3">
+              <i class="bi bi-search"></i>
+            </span>
+            <input type="text" class="form-control ps-1 py-2 fs-7"
+              placeholder="Search by User ID, Username, Transaction ID, [N]BFC Name..." (input)="onSearch($event)"
+              aria-label="Search transactions" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Card Section -->
+    <div class="card shadow-sm rounded-4 border-0 overflow-hidden">
+      <div class="card-body p-0">
+        <div class="table-responsive rounded-4" style="max-height: calc(100vh - 290px); overflow-y: auto;">
+          <table class="table table-hover table-striped table-bordered align-middle mb-0">
+            <thead class="bg-light sticky-top shadow-sm z-1">
+              <tr>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">User ID</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Username</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Transaction ID</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Amount</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Type</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">[N]BFC Name</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Date & Time</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let txn of transactions" class="transition-row">
+                <td class="px-3 py-2.5 font-monospace text-dark fw-semibold small">{{ txn.userId }}</td>
+                <td class="px-3 py-2.5 text-dark fw-semibold small">{{ txn.username }}</td>
+                <td class="px-3 py-2.5 font-monospace text-secondary small">{{ txn.transactionId }}</td>
+                <td class="px-3 py-2.5 text-end small" [ngClass]="getAmountClass(txn.type)">
+                  ₹{{ txn.amount | number }}
+                </td>
+                <td class="px-3 py-2.5 text-center">
+                  <span class="badge"
+                    [ngClass]="txn.type === 'Credit' ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-danger-subtle text-danger border border-danger-subtle'"
+                    style="font-size: 0.75rem; padding: 4px 8px;">
+                    {{ txn.type === 'Credit' ? 'C' : 'D' }}
+                  </span>
+                </td>
+                <td class="px-3 py-2.5 text-secondary fw-medium small">{{ txn.nbfcName }}</td>
+                <td class="px-3 py-2.5 text-secondary small">{{ txn.transactionDate }}</td>
+                <td class="px-3 py-2.5 text-center">
+                  <span class="badge px-2.5 py-1.5 rounded-pill fs-8 fw-semibold shadow-xs"
+                    [ngClass]="getStatusBadgeClass(txn.status)" style="font-size: 0.75rem;">
+                    {{ txn.status }}
+                  </span>
+                </td>
+              </tr>
+              <!-- Empty State -->
+              <tr *ngIf="transactions.length === 0">
+                <td colspan="8" class="text-center py-5">
+                  <div class="text-muted mb-2">
+                    <i class="bi bi-inbox fs-1 opacity-50"></i>
+                  </div>
+                  <h6 class="text-secondary fw-semibold">No Transactions Found</h6>
+                  <p class="text-muted small mb-0">Try adjusting your search keywords</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAPH/ANALYTICS VIEW -->
+  <div *ngIf="activeView === 'graph'" class="row">
+    <div class="col-12">
+      <div class="card shadow-sm rounded-4 border-0 p-2">
+        <div class="card-body p-3">
+          
+          <!-- Total Transactions Header Row -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-dark m-0" style="font-size: 1.1rem;">Total Transactions</h5>
+            <div class="text-end align-self-center">
+              <span class="text-success fw-bold" style="font-size: 1.1rem;">{{ getTransactionCount() | number }}</span>
+              <span class="text-muted small ms-1">Transactions</span>
+            </div>
+          </div>
+
+          <hr class="text-secondary opacity-25 my-3">
+
+          <!-- Transaction Analytics Heading & Period Filters -->
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <h6 class="card-title fw-bold text-secondary m-0" style="font-size: 0.95rem;">
+                <i class="bi bi-graph-up-arrow me-2 text-primary"></i>Transaction Analytics
+              </h6>
+            </div>
+            <div>
+              <ul class="nav nav-pills gap-1 bg-light p-1 rounded-3" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
+                          [class.active]="activePeriod === 'today'"
+                          (click)="setPeriod('today')" 
+                          style="font-size: 0.8rem;"
+                          type="button">Today</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
+                          [class.active]="activePeriod === 'week'"
+                          (click)="setPeriod('week')" 
+                          style="font-size: 0.8rem;"
+                          type="button">This Week</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
+                          [class.active]="activePeriod === 'month'"
+                          (click)="setPeriod('month')" 
+                          style="font-size: 0.8rem;"
+                          type="button">This Month</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
+                          [class.active]="activePeriod === 'year'"
+                          (click)="setPeriod('year')" 
+                          style="font-size: 0.8rem;"
+                          type="button">This Year</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Chart Placeholder -->
+          <div id="transaction-chart" #transactionChart class="w-100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

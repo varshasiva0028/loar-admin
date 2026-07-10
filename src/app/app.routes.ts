@@ -21,6 +21,8 @@ import { SrLogin } from './sradmin/layout/login/login';
 // Super Admin pages
 import { Dashboard as SrDashboard } from './sradmin/pages/dashboard/dashboard';
 import { Nbfc } from './sradmin/pages/nbfc/nbfc';
+import { Users as NbfcUsers } from './sradmin/pages/nbfc/users/users';
+import { Transactions as NbfcTransactions } from './sradmin/pages/nbfc/transactions/transactions';
 import { Notification as SrNotification } from './sradmin/pages/notification/notification';
 import { Myaccount as SrMyAccount } from './sradmin/pages/myaccount/myaccount';
 import { Reports as SrReports } from './sradmin/pages/reports/reports';
@@ -102,6 +104,14 @@ export const routes: Routes = [
       {
         path: 'nbfc',
         component: Nbfc
+      },
+      {
+        path: 'nbfc/users/:id',
+        component: NbfcUsers
+      },
+      {
+        path: 'nbfc/transactions/:id',
+        component: NbfcTransactions
       },
       {
         path: 'notification',

@@ -1,0 +1,183 @@
+<div class="users-content px-1 py-1">
+  <!-- Sticky Header & Search Bar Section -->
+  <div class="sticky-top bg-white z-3 pt-1 pb-2" style="top: -32px; margin-top: -8px;">
+    <!-- Header Section -->
+    <div class="mb-4">
+      <button class="btn btn-outline-secondary rounded-3 d-inline-flex align-items-center gap-2 mb-3"
+              (click)="goBack()">
+          <i class="bi bi-arrow-left"></i>
+          <span>Back</span>
+      </button>
+      <h1 class="h3 fw-bold text-dark mb-1" style="font-size: 1.5rem;">Users</h1>
+      <p class="text-secondary m-0" style="font-size: 0.85rem;">Manage all registered users</p>
+    </div>
+
+    <!-- Search Bar Section -->
+    <div class="card shadow-sm rounded-4 border-0 mb-4 p-2">
+      <div class="card-body p-2">
+        <div class="input-group search-input-group">
+          <span class="input-group-text bg-white text-muted ps-3">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" class="form-control ps-1 py-2.5 fs-7"
+            placeholder="Search by User ID, Name, Phone Number, Email..." (input)="onSearch($event)"
+            aria-label="Search users" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Card Section -->
+  <div class="card shadow-sm rounded-4 border-0 overflow-hidden">
+    <div class="card-body p-0">
+      <div class="table-responsive rounded-4" style="max-height: calc(100vh - 290px); overflow-y: auto;">
+        <table class="table table-hover table-striped table-bordered align-middle mb-0">
+          <thead class="bg-light sticky-top shadow-sm z-1">
+            <tr>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">User ID</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Name</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Paid</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Pending</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Total Transactions</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center" style="width: 170px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users" class="transition-row">
+              <td class="px-3 py-2.5 font-monospace text-dark fw-semibold small">{{ user.id }}</td>
+              <td class="px-3 py-2.5 text-dark fw-semibold small">{{ user.name }}</td>
+              <td class="px-3 py-2.5 text-end small text-success fw-semibold">₹{{ user.paid | number }}</td>
+              <td class="px-3 py-2.5 text-end small fw-semibold"
+                [ngClass]="user.pending > 0 ? 'text-danger' : 'text-secondary opacity-50'">
+                ₹{{ user.pending | number }}
+              </td>
+              <td class="px-3 py-2.5 text-center small fw-semibold text-secondary">{{ user.totalTransactions }}</td>
+              <td class="px-3 py-2.5 text-center">
+                <div class="d-flex justify-content-center gap-2 align-items-center">
+                  <button 
+                    class="action-btn action-btn-view" 
+                    title="View User"
+                    (click)="onViewUser(user)">
+                    <i class="bi bi-eye"></i>
+                  </button>                  
+                  <button class="action-btn action-btn-edit d-none" title="Edit User" (click)="onEditUser(user)">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="action-btn action-btn-delete" title="Delete User" (click)="onDeleteUser(user)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <!-- Empty State -->
+            <tr *ngIf="users.length === 0">
+              <td colspan="6" class="text-center py-5">
+                <div class="text-muted mb-2">
+                  <i class="bi bi-people fs-1 opacity-50"></i>
+                </div>
+                <h6 class="text-secondary fw-semibold">No Users Found</h6>
+                <p class="text-muted small mb-0">Try adjusting your search criteria</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Modal Overlay -->
+  <div class="modal fade show d-block" tabindex="-1" *ngIf="isViewModalOpen && selectedUser"
+    style="background-color: rgba(0,0,0,0.5);" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 rounded-4 shadow">
+        <div class="modal-header border-bottom border-light bg-light rounded-top-4 py-3">
+          <h5 class="modal-title fw-bold text-dark fs-5">User Details</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeViewModal()"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Row 1 -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">User ID</small>
+              <span class="fw-bold text-dark font-monospace">{{ selectedUser.id }}</span>
+            </div>
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Name</small>
+              <span class="fw-bold text-dark">{{ selectedUser.name }}</span>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Gender</small>
+              <span class="fw-bold text-dark">{{ selectedUser.gender }}</span>
+            </div>
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Phone Number</small>
+              <span class="fw-bold text-dark">{{ selectedUser.phone }}</span>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <small class="text-secondary d-block mb-1">Email ID</small>
+              <span class="fw-bold text-dark">{{ selectedUser.email }}</span>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="row mb-3">
+            <div class="col-12">
+              <small class="text-secondary d-block mb-1">Address</small>
+              <span class="fw-semibold text-secondary small">{{ selectedUser.address }}</span>
+            </div>
+          </div>
+
+          <!-- Row 5 -->
+          <div class="row pt-3 border-top border-light">
+            <div class="col-4">
+              <small class="text-secondary d-block mb-1">Paid</small>
+              <span class="fw-bold text-success">₹{{ selectedUser.paid | number }}</span>
+            </div>
+            <div class="col-4">
+              <small class="text-secondary d-block mb-1">Pending</small>
+              <span class="fw-bold text-danger">₹{{ selectedUser.pending | number }}</span>
+            </div>
+            <div class="col-4 text-center">
+              <small class="text-secondary d-block mb-1">Transactions</small>
+              <span class="fw-bold text-dark">{{ selectedUser.totalTransactions }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top border-light py-3">
+          <button type="button" class="btn btn-secondary rounded-3 px-4 py-2 fw-semibold"
+            (click)="closeViewModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal Overlay -->
+  <div class="modal fade show d-block" tabindex="-1" *ngIf="isDeleteModalOpen && userToDelete"
+    style="background-color: rgba(0,0,0,0.5);" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 rounded-4 shadow">
+        <div class="modal-body p-4 text-center">
+          <div class="text-danger mb-3">
+            <i class="bi bi-exclamation-triangle fs-1"></i>
+          </div>
+          <h5 class="fw-bold text-dark mb-2">Delete User?</h5>
+          <p class="text-secondary small mb-0">Are you sure you want to delete this user?</p>
+        </div>
+        <div class="modal-footer border-0 d-flex justify-content-center gap-2 pb-4 pt-0">
+          <button type="button" class="btn btn-light border rounded-3 px-3.5 py-2 fw-semibold text-secondary"
+            (click)="closeDeleteModal()">Cancel</button>
+          <button type="button" class="btn btn-danger rounded-3 px-3.5 py-2 fw-semibold"
+            (click)="confirmDelete()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+/* Sticky Table Header styling */
+.table-responsive {
+  scrollbar-width: thin;
+}
+
+thead.sticky-top {
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+thead th {
+  background-color: #f8f9fa !important;
+  border-bottom: 2px solid #dee2e6 !important;
+  white-space: nowrap;
+}
+
+/* Custom transitions and hover effect on table rows */
+.transition-row {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table-hover tbody tr.transition-row:hover {
+  background-color: rgba(25, 135, 84, 0.03) !important; /* Soft green overlay on hover */
+  cursor: pointer;
+}
+
+/* Search input focus styling */
+.search-input-group {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.search-input-group .form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
+  z-index: 3;
+}
+
+.search-input-group .form-control {
+  border-color: #dee2e6;
+  font-family: inherit;
+}
+
+.search-input-group .input-group-text {
+  border-color: #dee2e6;
+  border-right: 0;
+}
+
+/* Font scale fixes */
+.font-monospace {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+.fs-7 {
+  font-size: 0.9rem !important;
+}
+
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+
+/* Custom badge styling details */
+.bg-success-subtle {
+  background-color: #e8f5e9 !important;
+}
+
+.bg-danger-subtle {
+  background-color: #ffebee !important;
+}
+
+.badge {
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+/* --- Search Bar Corner Fixes --- */
+.search-input-group {
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: visible !important; /* Prevent parent-level clip shadows */
+}
+
+/* Input group text border-radius rules without clipping */
+.search-input-group .input-group-text {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  border-right: 0;
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+  transition: border-color 0.2s ease;
+}
+
+.search-input-group .form-control {
+  border-color: #dee2e6;
+  border-left: 0;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+  font-family: inherit;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease;
+}
+
+/* Group Focus Border & Shadow Glow Effects */
+.search-input-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15) !important;
+}
+
+.search-input-group:focus-within .input-group-text,
+.search-input-group:focus-within .form-control {
+  border-color: #198754 !important;
+}
+
+/* Navigation Pills active styling matching green theme */
+.nav-pills .nav-link {
+  color: #555;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-pills .nav-link:hover {
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.nav-pills .nav-link.active {
+  color: #fff !important;
+  background-color: #198754 !important;
+  box-shadow: 0 4px 8px rgba(25, 135, 84, 0.15);
+}
+
+/* Ensure ApexCharts container fits cleanly */
+#transaction-chart {
+  min-height: 320px;
+  margin-top: 10px;
+}
