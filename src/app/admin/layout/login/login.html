@@ -109,8 +109,7 @@
           <button 
             type="submit" 
             class="btn btn-success w-100 rounded-3 py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm"
-            [disabled]="isSubmitting"
-          >
+            [disabled]="isSubmitting">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isSubmitting"></span>
             <span>{{ isSubmitting ? 'Signing in...' : 'Sign In' }}</span>
           </button>
