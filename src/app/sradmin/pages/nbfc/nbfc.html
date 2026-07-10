@@ -1,1 +1,179 @@
-<p>nbfc works!</p>
+<div class="nbfc-content px-1 py-1">
+  <!-- Sticky Header & Search Bar Section -->
+  <div class="sticky-top bg-white z-3 pt-1 pb-2" style="top: -32px; margin-top: -8px;">
+    <!-- Header Section -->
+    <div class="mb-4">
+      <h1 class="h3 fw-bold text-dark mb-1" style="font-size: 1.5rem;">NBFC</h1>
+      <p class="text-secondary m-0" style="font-size: 0.85rem;">Manage all registered NBFC partners.</p>
+    </div>
+
+    <!-- Search Bar Section -->
+    <div class="card shadow-sm rounded-4 border-0 mb-4 p-2">
+      <div class="card-body p-2">
+        <div class="input-group search-input-group">
+          <span class="input-group-text bg-white text-muted ps-3">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" class="form-control ps-1 py-2 fs-7"
+            placeholder="Search by NBFC ID, NBFC Name, Username, Email..." (input)="onSearch($event)"
+            aria-label="Search NBFCs" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Card Section -->
+  <div class="card shadow-sm rounded-4 border-0 overflow-hidden">
+    <div class="card-body p-0">
+      <div class="table-responsive rounded-4" style="max-height: calc(100vh - 290px); overflow-y: auto;">
+        <table class="table table-hover table-striped table-bordered align-middle mb-0">
+          <thead class="bg-light sticky-top shadow-sm z-1">
+            <tr>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">ID</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Name</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Email ID</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">NBFC Name</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Total Users</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Total Receivable</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Total Paid</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Total Transactions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of nbfcList" class="transition-row">
+              <td class="px-3 py-2.5 font-monospace text-dark fw-semibold small">{{ item.id }}</td>
+              <td class="px-3 py-2.5 text-dark fw-semibold small">{{ item.username }}</td>
+              <td class="px-3 py-2.5 font-monospace text-secondary small">{{ item.email }}</td>
+              <td class="px-3 py-2.5 text-secondary fw-medium small">{{ item.nbfcName }}</td>
+              <td class="px-3 py-2.5 text-center">
+                <button (click)="navigateToUsers(item.id)" class="btn btn-link text-decoration-none p-0 fw-semibold text-success small" style="font-size: 0.85rem;">
+                  {{ item.totalUsers | number }}
+                </button>
+              </td>
+              <td class="px-3 py-2.5 text-end text-warning-emphasis fw-semibold small">₹{{ item.totalReceivable | number }}</td>
+              <td class="px-3 py-2.5 text-end text-primary fw-semibold small">₹{{ item.totalPaid | number }}</td>
+              <td class="px-3 py-2.5 text-center">
+                <button (click)="navigateToTransactions(item.id)" class="btn btn-link text-decoration-none p-0 fw-semibold text-success small" style="font-size: 0.85rem;">
+                  {{ item.totalTransactions | number }}
+                </button>
+              </td>
+            </tr>
+            <!-- Empty State -->
+            <tr *ngIf="nbfcList.length === 0">
+              <td colspan="8" class="text-center py-5">
+                <div class="text-muted mb-2">
+                  <i class="bi bi-inbox fs-1 opacity-50"></i>
+                </div>
+                <h6 class="text-secondary fw-semibold">No NBFCs Found</h6>
+                <p class="text-muted small mb-0">Try adjusting your search keywords</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <button class="btn btn-success rounded-circle shadow floating-add-btn d-flex align-items-center justify-content-center" 
+          (click)="openModal()" 
+          title="Add NBFC"
+          data-bs-toggle="tooltip" 
+          data-bs-placement="left">
+    <i class="bi bi-plus-lg fs-4"></i>
+  </button>
+
+  <!-- Create NBFC Bootstrap Modal -->
+  <div class="modal fade" [class.show]="isModalOpen" [style.display]="isModalOpen ? 'block' : 'none'" tabindex="-1" role="dialog" aria-labelledby="createNbfcModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="modal-title fw-bold text-dark fs-5" id="createNbfcModalLabel">Create New NBFC</h5>
+          <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <form (submit)="onCreateNbfc(); $event.preventDefault()" class="needs-validation" novalidate>
+            <!-- Username -->
+            <div class="mb-3">
+              <label class="form-label text-secondary small fw-semibold">Username</label>
+              <input type="text" 
+                     class="form-control rounded-3 py-2 fs-7" 
+                     [class.is-invalid]="isSubmitted && errors['username']"
+                     (input)="username = $any($event.target).value; validateField('username')"
+                     [value]="username" 
+                     placeholder="Enter username" />
+              <div class="invalid-feedback small">
+                {{ errors['username'] }}
+              </div>
+            </div>
+
+            <!-- Email ID -->
+            <div class="mb-3">
+              <label class="form-label text-secondary small fw-semibold">Email ID</label>
+              <input type="email" 
+                     class="form-control rounded-3 py-2 fs-7" 
+                     [class.is-invalid]="isSubmitted && errors['email']"
+                     (input)="email = $any($event.target).value; validateField('email')"
+                     [value]="email" 
+                     placeholder="Enter email address" />
+              <div class="invalid-feedback small">
+                {{ errors['email'] }}
+              </div>
+            </div>
+
+            <!-- NBFC Name -->
+            <div class="mb-3">
+              <label class="form-label text-secondary small fw-semibold">NBFC Name</label>
+              <input type="text" 
+                     class="form-control rounded-3 py-2 fs-7" 
+                     [class.is-invalid]="isSubmitted && errors['nbfcName']"
+                     (input)="nbfcName = $any($event.target).value; validateField('nbfcName')"
+                     [value]="nbfcName" 
+                     placeholder="Enter NBFC Name" />
+              <div class="invalid-feedback small">
+                {{ errors['nbfcName'] }}
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label class="form-label text-secondary small fw-semibold">Password</label>
+              <input type="password" 
+                     class="form-control rounded-3 py-2 fs-7" 
+                     [class.is-invalid]="isSubmitted && errors['password']"
+                     (input)="password = $any($event.target).value; validateField('password')"
+                     [value]="password" 
+                     placeholder="Enter password" />
+              <div class="invalid-feedback small">
+                {{ errors['password'] }}
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-3">
+              <label class="form-label text-secondary small fw-semibold">Confirm Password</label>
+              <input type="password" 
+                     class="form-control rounded-3 py-2 fs-7" 
+                     [class.is-invalid]="isSubmitted && errors['confirmPassword']"
+                     (input)="confirmPassword = $any($event.target).value; validateField('confirmPassword')"
+                     [value]="confirmPassword" 
+                     placeholder="Confirm password" />
+              <div class="invalid-feedback small">
+                {{ errors['confirmPassword'] }}
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top-0">
+              <button type="button" class="btn btn-light rounded-3 px-4 py-2 small fw-semibold text-secondary" (click)="closeModal()">Cancel</button>
+              <button type="submit" class="btn btn-success rounded-3 px-4 py-2 small fw-semibold">Create NBFC</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Backdrop -->
+  <div class="modal-backdrop fade show" *ngIf="isModalOpen" (click)="closeModal()"></div>
+</div>

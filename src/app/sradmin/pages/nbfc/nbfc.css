@@ -1,0 +1,147 @@
+/* Sticky Table Header styling */
+.table-responsive {
+  scrollbar-width: thin;
+}
+
+thead.sticky-top {
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+thead th {
+  background-color: #f8f9fa !important;
+  border-bottom: 2px solid #dee2e6 !important;
+  white-space: nowrap;
+}
+
+/* Custom transitions and hover effect on table rows */
+.transition-row {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table-hover tbody tr.transition-row:hover {
+  background-color: rgba(25, 135, 84, 0.03) !important; /* Soft green overlay on hover */
+  cursor: pointer;
+}
+
+/* Search input focus styling */
+.search-input-group {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.search-input-group .form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
+  z-index: 3;
+}
+
+.search-input-group .form-control {
+  border-color: #dee2e6;
+  font-family: inherit;
+}
+
+.search-input-group .input-group-text {
+  border-color: #dee2e6;
+  border-right: 0;
+}
+
+/* Font scale fixes */
+.font-monospace {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+.fs-7 {
+  font-size: 0.9rem !important;
+}
+
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+
+.badge {
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+/* --- Search Bar Corner Fixes --- */
+.search-input-group {
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: visible !important; /* Prevent parent-level clip shadows */
+}
+
+/* Input group text border-radius rules without clipping */
+.search-input-group .input-group-text {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  border-right: 0;
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+  transition: border-color 0.2s ease;
+}
+
+.search-input-group .form-control {
+  border-color: #dee2e6;
+  border-left: 0;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+  font-family: inherit;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease;
+}
+
+/* Group Focus Border & Shadow Glow Effects */
+.search-input-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15) !important;
+}
+
+.search-input-group:focus-within .input-group-text,
+.search-input-group:focus-within .form-control {
+  border-color: #198754 !important;
+}
+
+/* Floating Action Button */
+
+.floating-add-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 40px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  z-index: 1030; /* Keep it above table but below modal overlays */
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.floating-add-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25) !important;
+  background-color: #157347 !important;
+  border-color: #146c43 !important;
+}
+
+.floating-add-btn:active {
+  transform: scale(0.95);
+}
+
+/* Modal styles for manual show/hide implementation */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5); /* Modal overlay background */
+  z-index: 1050;
+  transition: opacity 0.15s linear;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal-backdrop {
+  z-index: 1040;
+}
