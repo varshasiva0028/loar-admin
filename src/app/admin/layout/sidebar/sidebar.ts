@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NotificationDataService } from '../../pages/notification/notification-data';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { NotificationDataService } from '../../pages/notification/notification-data.service';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +18,11 @@ import { NotificationDataService } from '../../pages/notification/notification-d
 export class Sidebar implements OnInit {
   public unreadNotificationsCount: number = 0;
 
-  constructor(private notificationService: NotificationDataService) {}
+  constructor(
+    private notificationService: NotificationDataService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.notificationService.getUnreadCount().subscribe({
@@ -28,5 +33,10 @@ export class Sidebar implements OnInit {
         console.error('Error fetching unread notification count:', err);
       }
     });
+  }
+
+  public onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/admin/login']);
   }
 }

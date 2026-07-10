@@ -22,7 +22,7 @@
     
     <!-- Dashboard -->
     <a
-      routerLink="/dashboard"
+      routerLink="/admin/dashboard"
       routerLinkActive="bg-success text-white"
       [routerLinkActiveOptions]="{ exact: true }"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
@@ -34,7 +34,7 @@
 
     <!-- Transaction -->
     <a
-      routerLink="/transaction"
+      routerLink="/admin/transaction"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -45,7 +45,7 @@
 
     <!-- Users -->
     <a
-      routerLink="/users"
+      routerLink="/admin/users"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -56,7 +56,7 @@
 
     <!-- Notifications -->
     <a
-      routerLink="/notification"
+      routerLink="/admin/notification"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center justify-content-between px-3 py-2 rounded-3 fw-semibold text-secondary">
       <div class="d-flex align-items-center gap-3">
@@ -72,7 +72,7 @@
 
     <!-- My Account -->
     <a
-      routerLink="/myaccount"
+      routerLink="/admin/myaccount"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -83,7 +83,7 @@
 
     <!-- Reports -->
     <a
-      routerLink="/reports"
+      routerLink="/admin/reports"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -94,7 +94,7 @@
 
     <!-- Settings -->
     <a
-      routerLink="/settings"
+      routerLink="/admin/settings"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -109,6 +109,7 @@
   <div class="mt-auto">
     <hr class="text-muted opacity-25 my-3">
     <button
+      (click)="onLogout()"
       class="btn btn-outline-danger border-0 text-start d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold w-100 transition-btn">
       <i class="bi bi-box-arrow-right fs-5"></i>
       <span>Logout</span>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +22,16 @@ export class Login implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    // If already logged in as admin, redirect to admin dashboard immediately
+    if (this.authService.getRole() === 'admin') {
+      this.router.navigate(['/admin/dashboard']);
+      return;
+    }
     this.initForm();
   }
 
@@ -32,8 +39,7 @@ export class Login implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$|^[a-zA-Z0-9_]{4,20}$') // Support email or standard username patterns
+        Validators.minLength(4)
       ]],
       password: ['', [
         Validators.required,
@@ -66,12 +72,13 @@ export class Login implements OnInit {
       this.isSubmitting = false;
       const { username, password } = this.loginForm.value;
 
-      // Mock validation credentials logic
-      if ((username === 'admin@loanportal.com' || username === 'admin') && password === 'admin123') {
-        this.router.navigate(['/dashboard']);
+      // Validate Admin Credentials exactly as requested
+      if (username === 'admin' && password === 'admin123') {
+        this.authService.login('admin');
+        this.router.navigate(['/admin/dashboard']);
       } else {
-        this.errorMessage = 'Invalid username or password. Please try again.';
+        this.errorMessage = 'Invalid Username or Password';
       }
-    }, 1200);
+    }, 1000);
   }
 }
