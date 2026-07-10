@@ -74,3 +74,41 @@ thead th {
   letter-spacing: 0.02em;
   font-weight: 600;
 }
+
+/* --- Search Bar Corner Fixes --- */
+.search-input-group {
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: visible !important; /* Prevent parent-level clip shadows */
+}
+
+/* Input group text border-radius rules without clipping */
+.search-input-group .input-group-text {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+  border-right: 0;
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+  transition: border-color 0.2s ease;
+}
+
+.search-input-group .form-control {
+  border-color: #dee2e6;
+  border-left: 0;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+  font-family: inherit;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease;
+}
+
+/* Group Focus Border & Shadow Glow Effects */
+.search-input-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15) !important;
+}
+
+.search-input-group:focus-within .input-group-text,
+.search-input-group:focus-within .form-control {
+  border-color: #198754 !important;
+}

@@ -1,0 +1,82 @@
+/* Background wrapper with soft green-tinted layout backdrop */
+.login-wrapper {
+  background: radial-gradient(circle at 50% 50%, #f4faf6 0%, #ebf5ee 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Card container limits */
+.login-container {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.login-container .card {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.065) !important;
+}
+
+/* Focus and border styles for inputs */
+.login-input-group {
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.login-input-group .input-group-text {
+  border-color: #dee2e6;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.login-input-group .form-control {
+  border-color: #dee2e6;
+  box-shadow: none !important;
+}
+
+.login-input-group .btn {
+  border-color: #dee2e6;
+}
+
+.login-input-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15) !important;
+}
+
+.login-input-group:focus-within .input-group-text,
+.login-input-group:focus-within .form-control,
+.login-input-group:focus-within .btn {
+  border-color: #198754 !important;
+}
+
+/* Invalid form group styles */
+.login-input-group.is-invalid-group {
+  border-color: #dc3545 !important;
+}
+
+.login-input-group.is-invalid-group .input-group-text,
+.login-input-group.is-invalid-group .form-control,
+.login-input-group.is-invalid-group .btn {
+  border-color: #dc3545 !important;
+}
+
+.login-input-group.is-invalid-group:focus-within {
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.15) !important;
+}
+
+/* Remember me custom success checkbox theme styling */
+.check-switch-custom:checked {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+
+.check-switch-custom:focus {
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15) !important;
+}
+
+/* Links hover states */
+.hover-underline:hover {
+  text-decoration: underline !important;
+}
+
+.fs-7 {
+  font-size: 0.9rem !important;
+}

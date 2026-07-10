@@ -1,1 +1,128 @@
-<p>login works!</p>
+<div class="login-wrapper d-flex align-items-center justify-content-center min-vh-100 bg-light-subtle py-5">
+  <div class="login-container w-100 px-3">
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+      
+      <!-- Top Accent Line -->
+      <div style="height: 4px; background-color: #198754;"></div>
+
+      <div class="card-body p-4 p-md-5">
+        
+        <!-- Logo & Title Header -->
+        <div class="text-center mb-4">
+          <div 
+            class="mx-auto mb-3 d-flex align-items-center justify-content-center bg-success bg-gradient text-white rounded-3 shadow-sm"
+            style="width: 52px; height: 52px; font-size: 24px;"
+          >
+            <i class="bi bi-bank2"></i>
+          </div>
+          <h4 class="fw-bold text-dark mb-1">Welcome Back</h4>
+          <p class="text-secondary small">Access the loan admin portal using your credentials.</p>
+        </div>
+
+        <!-- Global Error Message Alert -->
+        <div class="alert alert-danger rounded-3 px-3 py-2.5 small d-flex align-items-center gap-2 mb-4" *ngIf="errorMessage">
+          <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <!-- Login Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+          
+          <!-- Username Input Control -->
+          <div class="mb-3.5">
+            <label for="usernameInput" class="form-label text-dark fw-semibold small">Username or Email</label>
+            <div class="input-group login-input-group" [class.is-invalid-group]="f['username'].touched && f['username'].invalid">
+              <span class="input-group-text bg-white text-secondary pe-2 ps-3">
+                <i class="bi bi-person"></i>
+              </span>
+              <input 
+                type="text" 
+                id="usernameInput" 
+                formControlName="username"
+                class="form-control ps-1 py-2.5 fs-7 border-start-0" 
+                placeholder="Enter username or email"
+                autocomplete="username"
+                required
+              />
+            </div>
+            
+            <!-- Error message feedback -->
+            <div class="text-danger small mt-1 ps-1" *ngIf="f['username'].touched && f['username'].invalid" style="font-size: 0.75rem;">
+              <span *ngIf="f['username'].errors?.['required']">Username or Email is required.</span>
+              <span *ngIf="f['username'].errors?.['minlength']">Username must be at least 4 characters.</span>
+              <span *ngIf="f['username'].errors?.['pattern']">Please enter a valid username or email address.</span>
+            </div>
+          </div>
+
+          <!-- Password Input Control -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <label for="passwordInput" class="form-label text-dark fw-semibold small mb-0">Password</label>
+              <a href="#" class="text-success small fw-medium text-decoration-none hover-underline">Forgot Password?</a>
+            </div>
+            <div class="input-group login-input-group" [class.is-invalid-group]="f['password'].touched && f['password'].invalid">
+              <span class="input-group-text bg-white text-secondary pe-2 ps-3">
+                <i class="bi bi-lock"></i>
+              </span>
+              <input 
+                [type]="showPassword ? 'text' : 'password'" 
+                id="passwordInput" 
+                formControlName="password"
+                class="form-control ps-1 py-2.5 fs-7 border-start-0 border-end-0" 
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+              />
+              <button 
+                type="button" 
+                class="btn bg-white border-top border-bottom border-end border-start-0 text-secondary pe-3"
+                (click)="togglePasswordVisibility()"
+                style="z-index: 4;"
+              >
+                <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+              </button>
+            </div>
+
+            <!-- Error message feedback -->
+            <div class="text-danger small mt-1 ps-1" *ngIf="f['password'].touched && f['password'].invalid" style="font-size: 0.75rem;">
+              <span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+              <span *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters.</span>
+            </div>
+          </div>
+
+          <!-- Keep Me Logged In -->
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="form-check">
+              <input 
+                class="form-check-input check-switch-custom" 
+                type="checkbox" 
+                id="rememberMeCheckbox"
+                formControlName="rememberMe"
+              >
+              <label class="form-check-label text-secondary small select-none" for="rememberMeCheckbox" style="cursor: pointer;">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit Action Button -->
+          <button 
+            type="submit" 
+            class="btn btn-success w-100 rounded-3 py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm"
+            [disabled]="isSubmitting"
+          >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isSubmitting"></span>
+            <span>{{ isSubmitting ? 'Signing in...' : 'Sign In' }}</span>
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Footer Copyright -->
+    <div class="text-center mt-4">
+      <p class="text-secondary small mb-0">&copy; 2026 Loan Portal Admin. All rights reserved.</p>
+    </div>
+  </div>
+</div>

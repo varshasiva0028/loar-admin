@@ -10,13 +10,12 @@
     <!-- Search Bar Section -->
     <div class="card shadow-sm rounded-4 border-0 mb-4 p-2">
       <div class="card-body p-2">
-        <div class="input-group border rounded-4 overflow-hidden">
-          <span class="input-group-text bg-white border-0 text-muted ps-3">
+        <div class="input-group search-input-group">
+          <span class="input-group-text bg-white text-muted ps-3">
             <i class="bi bi-search"></i>
           </span>
-
-          <input type="text" class="form-control border-0 shadow-none ps-1 py-2"
-            placeholder="Search by User ID, Username, Transaction ID, NBFC Name..." (input)="onSearch($event)"
+          <input type="text" class="form-control ps-1 py-2 fs-7"
+            placeholder="Search by User ID, Username, Transaction ID, [N]BFC Name..." (input)="onSearch($event)"
             aria-label="Search transactions" />
         </div>
       </div>
@@ -35,7 +34,7 @@
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Transaction ID</th>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Amount</th>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Type</th>
-              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">NBFC Name</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">[N]BFC Name</th>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Date & Time</th>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Status</th>
             </tr>

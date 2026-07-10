@@ -127,9 +127,19 @@ export class UsersService {
       paid: 220000,
       pending: 45000,
       totalTransactions: 18
+    },
+     {
+      id: 'USR10011',
+      name: 'Anushka Reddy',
+      gender: 'Female',
+      phone: '8843210987',
+      email: 'anushka@example.com',
+      address: '12B, MG Road, AndraPradesh - 682016',
+      paid: 320000,
+      pending: 55000,
+      totalTransactions: 14
     }
   ];
-
   constructor() {}
 
   public getUsers(): Observable<UserModel[]> {

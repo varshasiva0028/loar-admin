@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NotificationDataService } from '../../pages/notification/notification-data';
-
-@Component({
+import { NotificationDataService } from '../../pages/notification/notificationdata';@Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [

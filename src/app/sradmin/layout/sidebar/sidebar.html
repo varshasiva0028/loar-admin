@@ -11,7 +11,7 @@
       <i class="bi bi-bank2"></i>
     </div>
     <span class="fw-bold text-success small">
-      ADMIN PORTAL
+      SUPER ADMIN PORTAL
     </span>
   </div>
 
@@ -22,7 +22,7 @@
     
     <!-- Dashboard -->
     <a
-      routerLink="/dashboard"
+      routerLink="/sradmin/dashboard"
       routerLinkActive="bg-success text-white"
       [routerLinkActiveOptions]="{ exact: true }"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
@@ -32,31 +32,20 @@
       <span>Dashboard</span>
     </a>
 
-    <!-- Transaction -->
+    <!-- NBFC -->
     <a
-      routerLink="/transaction"
+      routerLink="/sradmin/nbfc"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
-        <i class="bi bi-arrow-left-right fs-5"></i>
+        <i class="bi bi-building-fill fs-5"></i>
       </span>
-      <span>Transaction</span>
-    </a>
-
-    <!-- Users -->
-    <a
-      routerLink="/users"
-      routerLinkActive="bg-success text-white"
-      class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
-      <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
-        <i class="bi bi-people-fill fs-5"></i>
-      </span>
-      <span>Users</span>
+      <span>NBFC</span>
     </a>
 
     <!-- Notifications -->
     <a
-      routerLink="/notification"
+      routerLink="/sradmin/notification"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center justify-content-between px-3 py-2 rounded-3 fw-semibold text-secondary">
       <div class="d-flex align-items-center gap-3">
@@ -72,7 +61,7 @@
 
     <!-- My Account -->
     <a
-      routerLink="/myaccount"
+      routerLink="/sradmin/myaccount"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -83,7 +72,7 @@
 
     <!-- Reports -->
     <a
-      routerLink="/reports"
+      routerLink="/sradmin/reports"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
@@ -94,7 +83,7 @@
 
     <!-- Settings -->
     <a
-      routerLink="/settings"
+      routerLink="/sradmin/settings"
       routerLinkActive="bg-success text-white"
       class="nav-link transition-btn d-flex align-items-center gap-3 px-3 py-2 rounded-3 fw-semibold text-secondary">
       <span class="d-inline-flex justify-content-center align-items-center" style="width:24px;">
