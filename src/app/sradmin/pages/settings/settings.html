@@ -1,1 +1,69 @@
-<p>settings works!</p>
+<!-- Notification Preferences Card -->
+  <div class="row mt-4" *ngIf="settings">
+    <div class="col-12">
+      <div class="card shadow-sm rounded-4 border-0">
+        <!-- Card Header Section -->
+        <div class="card-header bg-success-subtle-custom border-0 py-3 px-4">
+          <h5 class="fw-bold text-dark m-0" style="font-size: 1.1rem;">
+            <i class="bi bi-bell me-2 text-success"></i>Notification Preferences
+          </h5>
+        </div>
+        <!-- Card Body Section -->
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <!-- Email Notifications Switch -->
+              <div class="p-3 border rounded-3 bg-light-subtle d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h6 class="text-dark fw-bold mb-1 fs-7">Email Notifications</h6>
+                  <p class="text-secondary mb-0 small">Receive summaries and transactional alerts via email.</p>
+                </div>
+                <div class="form-check form-switch fs-5">
+                  <input class="form-check-input" type="checkbox" role="switch" 
+                         [checked]="settings.email" (change)="toggleSetting('email')">
+                </div>
+              </div>
+
+              <!-- Push Notifications Switch -->
+              <div class="p-3 border rounded-3 bg-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-dark fw-bold mb-1 fs-7">Push Notifications</h6>
+                  <p class="text-secondary mb-0 small">Get instant notifications on your active devices.</p>
+                </div>
+                <div class="form-check form-switch fs-5">
+                  <input class="form-check-input" type="checkbox" role="switch" 
+                         [checked]="settings.push" (change)="toggleSetting('push')">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <!-- System Notifications Switch -->
+              <div class="p-3 border rounded-3 bg-light-subtle d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h6 class="text-dark fw-bold mb-1 fs-7">System Notifications</h6>
+                  <p class="text-secondary mb-0 small">Receive in-app alerts and general announcements.</p>
+                </div>
+                <div class="form-check form-switch fs-5">
+                  <input class="form-check-input" type="checkbox" role="switch" 
+                         [checked]="settings.system" (change)="toggleSetting('system')">
+                </div>
+              </div>
+
+              <!-- Security Alerts Switch -->
+              <div class="p-3 border rounded-3 bg-light-subtle d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-dark fw-bold mb-1 fs-7">Security Alerts</h6>
+                  <p class="text-secondary mb-0 small">Receive notifications on new logins or security changes.</p>
+                </div>
+                <div class="form-check form-switch fs-5">
+                  <input class="form-check-input" type="checkbox" role="switch" 
+                         [checked]="settings.security" (change)="toggleSetting('security')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

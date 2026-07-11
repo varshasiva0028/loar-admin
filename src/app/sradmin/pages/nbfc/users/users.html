@@ -3,10 +3,10 @@
   <div class="sticky-top bg-white z-3 pt-1 pb-2" style="top: -32px; margin-top: -8px;">
     <!-- Header Section -->
     <div class="mb-4">
-      <button class="btn btn-outline-secondary rounded-3 d-inline-flex align-items-center gap-2 mb-3"
-              (click)="goBack()">
-          <i class="bi bi-arrow-left"></i>
-          <span>Back</span>
+      <button
+        class="btn btn-outline-secondary rounded-3 position-fixed d-flex align-items-center justify-content-center shadow-sm"
+        style="top: 50px; left: 280px; width: 34px; height: 34px; z-index: 1050;" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
       </button>
       <h1 class="h3 fw-bold text-dark mb-1" style="font-size: 1.5rem;">Users</h1>
       <p class="text-secondary m-0" style="font-size: 0.85rem;">Manage all registered users</p>
@@ -39,7 +39,8 @@
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Paid</th>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Pending</th>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Total Transactions</th>
-              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center" style="width: 170px;">Actions</th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center" style="width: 170px;">
+                Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -54,12 +55,9 @@
               <td class="px-3 py-2.5 text-center small fw-semibold text-secondary">{{ user.totalTransactions }}</td>
               <td class="px-3 py-2.5 text-center">
                 <div class="d-flex justify-content-center gap-2 align-items-center">
-                  <button 
-                    class="action-btn action-btn-view" 
-                    title="View User"
-                    (click)="onViewUser(user)">
+                  <button class="action-btn action-btn-view" title="View User" (click)="onViewUser(user)">
                     <i class="bi bi-eye"></i>
-                  </button>                  
+                  </button>
                   <button class="action-btn action-btn-edit d-none" title="Edit User" (click)="onEditUser(user)">
                     <i class="bi bi-pencil-square"></i>
                   </button>

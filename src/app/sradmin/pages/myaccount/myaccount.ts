@@ -11,7 +11,6 @@ import { MyAccountService, SrProfileModel, SrNotificationSettings } from './myac
 })
 export class Myaccount implements OnInit {
   public profile: SrProfileModel | null = null;
-  public settings: SrNotificationSettings | null = null;
   public isEditing = false;
 
   // Edit fields
@@ -28,7 +27,6 @@ export class Myaccount implements OnInit {
 
   ngOnInit(): void {
     this.loadProfile();
-    this.loadSettings();
   }
 
   private loadProfile(): void {
@@ -38,15 +36,6 @@ export class Myaccount implements OnInit {
         this.resetTempFields();
       },
       error: (err) => console.error('Error fetching profile:', err)
-    });
-  }
-
-  private loadSettings(): void {
-    this.myAccountService.getNotificationSettings().subscribe({
-      next: (data) => {
-        this.settings = data;
-      },
-      error: (err) => console.error('Error fetching settings:', err)
     });
   }
 
@@ -183,17 +172,4 @@ export class Myaccount implements OnInit {
     }
   }
 
-  public toggleSetting(key: keyof SrNotificationSettings): void {
-    if (!this.settings) return;
-    const updatedSettings = {
-      ...this.settings,
-      [key]: !this.settings[key]
-    };
-    this.myAccountService.updateNotificationSettings(updatedSettings).subscribe({
-      next: (data) => {
-        this.settings = data;
-      },
-      error: (err) => console.error('Error toggling setting:', err)
-    });
-  }
 }

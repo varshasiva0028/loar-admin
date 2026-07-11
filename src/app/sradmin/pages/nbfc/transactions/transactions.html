@@ -2,10 +2,10 @@
   <!-- Header Section with View Toggle -->
   <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
     <div>
-      <button class="btn btn-outline-secondary rounded-3 d-inline-flex align-items-center gap-2 mb-3"
-              (click)="goBack()">
-          <i class="bi bi-arrow-left"></i>
-          <span>Back</span>
+      <button
+        class="btn btn-outline-secondary rounded-3 position-fixed d-inline-flex align-items-center justify-content-center shadow-sm"
+        style="top: 50px; left: 280px; width: 34px; height: 34px; z-index: 1050;" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
       </button>
       <h1 class="h3 fw-bold text-dark mb-1" style="font-size: 1.5rem;">Transactions</h1>
       <p class="text-secondary m-0" style="font-size: 0.85rem;">Monitor and manage all user transactions.</p>
@@ -14,18 +14,12 @@
     <div>
       <ul class="nav nav-pills gap-1 bg-light p-1 rounded-3" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link px-3 py-1.5 rounded-3 fw-semibold border-0" 
-                  [class.active]="activeView === 'table'"
-                  (click)="setView('table')" 
-                  style="font-size: 0.85rem;"
-                  type="button">Table View</button>
+          <button class="nav-link px-3 py-1.5 rounded-3 fw-semibold border-0" [class.active]="activeView === 'table'"
+            (click)="setView('table')" style="font-size: 0.85rem;" type="button">Table View</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link px-3 py-1.5 rounded-3 fw-semibold border-0" 
-                  [class.active]="activeView === 'graph'"
-                  (click)="setView('graph')" 
-                  style="font-size: 0.85rem;"
-                  type="button">Analytics View</button>
+          <button class="nav-link px-3 py-1.5 rounded-3 fw-semibold border-0" [class.active]="activeView === 'graph'"
+            (click)="setView('graph')" style="font-size: 0.85rem;" type="button">Analytics View</button>
         </li>
       </ul>
     </div>
@@ -112,7 +106,7 @@
     <div class="col-12">
       <div class="card shadow-sm rounded-4 border-0 p-2">
         <div class="card-body p-3">
-          
+
           <!-- Total Transactions Header Row -->
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="fw-bold text-dark m-0" style="font-size: 1.1rem;">Total Transactions</h5>
@@ -134,37 +128,29 @@
             <div>
               <ul class="nav nav-pills gap-1 bg-light p-1 rounded-3" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
-                          [class.active]="activePeriod === 'today'"
-                          (click)="setPeriod('today')" 
-                          style="font-size: 0.8rem;"
-                          type="button">Today</button>
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0"
+                    [class.active]="activePeriod === 'today'" (click)="setPeriod('today')" style="font-size: 0.8rem;"
+                    type="button">Today</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
-                          [class.active]="activePeriod === 'week'"
-                          (click)="setPeriod('week')" 
-                          style="font-size: 0.8rem;"
-                          type="button">This Week</button>
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0"
+                    [class.active]="activePeriod === 'week'" (click)="setPeriod('week')" style="font-size: 0.8rem;"
+                    type="button">This Week</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
-                          [class.active]="activePeriod === 'month'"
-                          (click)="setPeriod('month')" 
-                          style="font-size: 0.8rem;"
-                          type="button">This Month</button>
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0"
+                    [class.active]="activePeriod === 'month'" (click)="setPeriod('month')" style="font-size: 0.8rem;"
+                    type="button">This Month</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0" 
-                          [class.active]="activePeriod === 'year'"
-                          (click)="setPeriod('year')" 
-                          style="font-size: 0.8rem;"
-                          type="button">This Year</button>
+                  <button class="nav-link px-2.5 py-1 rounded-3 fw-semibold border-0"
+                    [class.active]="activePeriod === 'year'" (click)="setPeriod('year')" style="font-size: 0.8rem;"
+                    type="button">This Year</button>
                 </li>
               </ul>
             </div>
           </div>
-          
+
           <!-- Chart Placeholder -->
           <div id="transaction-chart" #transactionChart class="w-100"></div>
         </div>
