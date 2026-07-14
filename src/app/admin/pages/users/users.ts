@@ -32,7 +32,7 @@ export class Users implements OnInit {
       next: (data) => {
         console.log("API DATA", data);
         this.users = data;
-         this.cdr.detectChanges();
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error("API ERROR", err);
