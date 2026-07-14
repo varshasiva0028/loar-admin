@@ -8,7 +8,6 @@
         Monitor and manage all user transactions.
       </p>
     </div>
-
     <!-- Search Bar Section -->
     <div class="card shadow-sm rounded-4 border-0 mb-4 p-2">
       <div class="card-body p-2">
@@ -16,44 +15,32 @@
           <span class="input-group-text bg-white text-muted ps-3">
             <i class="bi bi-search"></i>
           </span>
-          <input
-            type="text"
-            class="form-control ps-1 py-2 fs-7"
-            placeholder="Search by User ID, Username, Transaction ID..."
-            (input)="onSearch($event)"
-            aria-label="Search transactions"
-          />
+          <input type="text" class="form-control ps-1 py-2 fs-7"
+            placeholder="Search by User ID, Username, Transaction ID..." (input)="onSearch($event)"
+            aria-label="Search transactions" />
         </div>
       </div>
     </div>
   </div>
-
   <!-- Table Card Section -->
   <div class="card shadow-sm rounded-4 border-0 overflow-hidden">
     <div class="card-body p-0">
-      <div
-        class="table-responsive rounded-4"
-        style="max-height: calc(100vh - 290px); overflow-y: auto;"
-      >
+      <div class="table-responsive rounded-4" style="max-height: calc(100vh - 290px); overflow-y: auto;">
         <table class="table table-hover table-striped table-bordered align-middle mb-0">
           <thead class="bg-light sticky-top shadow-sm z-1">
             <tr>
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">
                 User ID
               </th>
-
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">
                 Username
               </th>
-
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">
                 Transaction ID
               </th>
-
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">
                 Amount
               </th>
-
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">
                 Type
               </th>
@@ -61,20 +48,16 @@
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">
                 Date & Time
               </th>
-
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">
                 Status
               </th>
             </tr>
           </thead>
-
           <tbody>
             <tr *ngFor="let txn of transactions" class="transition-row">
-
               <td class="px-3 py-2.5 font-monospace text-dark fw-semibold small">
                 {{ txn.userId }}
               </td>
-
               <td class="px-3 py-2.5 text-dark fw-semibold small">
                 {{ txn.username }}
               </td>
@@ -82,61 +65,43 @@
               <td class="px-3 py-2.5 font-monospace text-secondary small">
                 {{ txn.transactionId }}
               </td>
-
-              <td
-                class="px-3 py-2.5 text-end small"
-                [ngClass]="getAmountClass(txn.type)"
-              >
+              <td class="px-3 py-2.5 text-end small" [ngClass]="getAmountClass(txn.type)">
                 ₹{{ txn.amount | number }}
               </td>
 
               <td class="px-3 py-2.5 text-center">
-                <span
-                  class="badge"
-                  [ngClass]="
+                <span class="badge" [ngClass]="
                     txn.type === 'Credit'
                       ? 'bg-success-subtle text-success border border-success-subtle'
                       : 'bg-danger-subtle text-danger border border-danger-subtle'
-                  "
-                  style="font-size: 0.75rem; padding: 4px 8px;"
-                >
+                  " style="font-size: 0.75rem; padding: 4px 8px;">
                   {{ txn.type === 'Credit' ? 'C' : 'D' }}
                 </span>
               </td>
-
               <td class="px-3 py-2.5 text-secondary small">
                 {{ txn.transactionDate }}
               </td>
-
               <td class="px-3 py-2.5 text-center">
-                <span
-                  class="badge px-2.5 py-1.5 rounded-pill fs-8 fw-semibold shadow-xs"
-                  [ngClass]="getStatusBadgeClass(txn.status)"
-                  style="font-size: 0.75rem;"
-                >
+                <span class="badge px-2.5 py-1.5 rounded-pill fs-8 fw-semibold shadow-xs"
+                  [ngClass]="getStatusBadgeClass(txn.status)" style="font-size: 0.75rem;">
                   {{ txn.status }}
                 </span>
               </td>
-
             </tr>
-
             <!-- Empty State -->
             <tr *ngIf="transactions.length === 0">
               <td colspan="7" class="text-center py-5">
                 <div class="text-muted mb-2">
                   <i class="bi bi-inbox fs-1 opacity-50"></i>
                 </div>
-
                 <h6 class="text-secondary fw-semibold">
                   No Transactions Found
                 </h6>
-
                 <p class="text-muted small mb-0">
                   Try adjusting your search keywords
                 </p>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>

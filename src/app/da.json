@@ -1,0 +1,85 @@
+{
+    "status": 200,
+    "message": "Success",
+    "data": {
+        "prf": [
+            {
+                "name": " ",
+                "phone": "",
+                "addr": "",
+                "email": "",
+                "prof": "null",
+                "dob": "",
+                "mstat": "",
+                "usrdet": "null",
+                "loandet": "null"
+            },
+            {
+                "name": "Moorthy",
+                "phone": "1122334455",
+                "addr": "sdfajkl",
+                "email": "ran@van.com",
+                "prof": "{\"cmpname\":\"uioew\",\"cmpgstin\":\"DA2384792374232\",\"cmpaddr\":\"ksljdflk\",\"cmpcity\":\"Mdf\",\"cmppin\":87999,\"cmpphno\":8239479832,\"cmpaphno\":null,\"cmpdesg\":\"lksdjf\",\"cmpslry\":987987}",
+                "dob": "2003-05-02",
+                "mstat": "",
+                "usrdet": "{\"fname\":\"asdb\",\"lname\":\"dsjfal\",\"dob\":\"2003-05-02\",\"vhregno\":null,\"phno\":\"2458961333\",\"adhno\":\"123454646462\",\"addr\":\"sdfajkl\",\"gender\":null,\"userdet\":null,\"cmpdet\":null,\"loandet\":null}",
+                "loandet": "[{\"bnkfinname\":\"HDFC\",\"loantype\":\"Home\",\"loanamt\":42343,\"totdues\":22,\"cmpdues\":22}]"
+            },
+            {
+                "name": "Mukund Raj",
+                "phone": "1279976878",
+                "addr": "",
+                "email": "",
+                "prof": "{\"cmpname\":\"Boat\",\"cmpgstin\":\"53YU46944849845\",\"cmpaddr\":\"Naranyan nagar, Out post\",\"cmpcity\":\"Virudhunagar\",\"cmppin\":659007,\"cmpphno\":9456618843,\"cmpaphno\":null,\"cmpdesg\":\"Operator\",\"cmpslry\":9000}",
+                "dob": "1991-04-08",
+                "mstat": "",
+                "usrdet": "{\"fname\":\"Mukund\",\"lname\":\"Raj\",\"dob\":\"1991-04-08\",\"vhregno\":null,\"phno\":\"1279976878\",\"adhno\":\"175579555832\",\"addr\":null,\"gender\":null,\"userdet\":null,\"cmpdet\":null,\"loandet\":null}",
+                "loandet": "[{\"bnkfinname\":\"ICICI\",\"loantype\":\"Personal\",\"loanamt\":75455,\"totdues\":14,\"cmpdues\":10}]"
+            },
+            {
+                "name": "AD DC",
+                "phone": "5566778899",
+                "addr": "iolkjdskldjsf",
+                "email": "",
+                "prof": "{\"cmpname\":\"jeiwojfjsdl\",\"cmpgstin\":\"23DW23490908411\",\"cmpaddr\":\"sdfjlfkklsd\",\"cmpcity\":\"jsdfklj\",\"cmppin\":432907,\"cmpphno\":9230480923,\"cmpaphno\":null,\"cmpdesg\":\"ldsfkj\",\"cmpslry\":329434}",
+                "dob": "2006-05-05",
+                "mstat": "",
+                "usrdet": "{\"fname\":\"AD\",\"lname\":\"DC\",\"dob\":\"2006-05-05\",\"vhregno\":null,\"phno\":\"5464646462\",\"adhno\":\"331321311313\",\"addr\":\"iolkjdskldjsf\",\"gender\":null,\"userdet\":null,\"cmpdet\":null,\"loandet\":null}",
+                "loandet": "[{\"bnkfinname\":\"HDFC\",\"loantype\":\"Vehicle\",\"loanamt\":6544,\"totdues\":65,\"cmpdues\":11}]"
+            },
+            {
+                "name": "Vibu Vinayak",
+                "phone": "7458961230",
+                "addr": "Varunan Street, Megamalai, OT POST",
+                "email": "",
+                "prof": "{\"cmpname\":\"Susee Trades\",\"cmpgstin\":\"33TY56423488963\",\"cmpaddr\":\"25, Tamil Sangam Road\",\"cmpcity\":\"Madurai\",\"cmppin\":625002,\"cmpphno\":8456789456,\"cmpaphno\":null,\"cmpdesg\":\"Branch manager\",\"cmpslry\":24000}",
+                "dob": "2000-06-05",
+                "mstat": "",
+                "usrdet": "{\"fname\":\"Vibu\",\"lname\":\"Vinayak\",\"dob\":\"2000-06-05\",\"vhregno\":null,\"phno\":\"7458961230\",\"adhno\":\"124567894561\",\"addr\":\"Varunan Street, Megamalai, OT POST\",\"gender\":null,\"userdet\":null,\"cmpdet\":null,\"loandet\":null}",
+                "loandet": "[{\"bnkfinname\":\"AXIS\",\"loantype\":\"Jewel\",\"loanamt\":18000,\"totdues\":16,\"cmpdues\":12}]"
+            },
+            {
+                "name": "DE 54",
+                "phone": "7498744654",
+                "addr": "iweweiuo",
+                "email": "",
+                "prof": "{\"cmpname\":\"23wk\",\"cmpgstin\":\"DW2394890320932\",\"cmpaddr\":\"klsdkjfa\",\"cmpcity\":\"lkdsjf\",\"cmppin\":546541,\"cmpphno\":6548977324,\"cmpaphno\":null,\"cmpdesg\":\"sdajkl\",\"cmpslry\":654465}",
+                "dob": "2003-02-03",
+                "mstat": "",
+                "usrdet": "{\"fname\":\"DE\",\"lname\":\"54\",\"dob\":\"2003-02-03\",\"vhregno\":null,\"phno\":\"7498744654\",\"adhno\":\"654646454654\",\"addr\":\"iweweiuo\",\"gender\":null,\"userdet\":null,\"cmpdet\":null,\"loandet\":null}",
+                "loandet": "[{\"bnkfinname\":\"ICICI\",\"loantype\":\"Vehicle\",\"loanamt\":324324,\"totdues\":32,\"cmpdues\":31}]"
+            },
+            {
+                "name": "Karthikeyan Elumalai",
+                "phone": "8524018185",
+                "addr": "126A, Kovarthanapuram 5th Street, Vagaikulam",
+                "email": "",
+                "prof": "{\"cmpname\":\"Susee Finance\",\"cmpgstin\":\"454646AH4652766\",\"cmpaddr\":\"t\nTamil sangam\",\"cmpcity\":\"Madurai\",\"cmppin\":625001,\"cmpphno\":9764619466,\"cmpaphno\":null,\"cmpdesg\":\"MD Driver\",\"cmpslry\":20000}",
+                "dob": "1991-12-12",
+                "mstat": "",
+                "usrdet": "{\"fname\":\"Karthikeyan\",\"lname\":\"Elumalai\",\"dob\":\"1991-12-12\",\"vhregno\":null,\"phno\":\"8524018185\",\"adhno\":\"883196473649\",\"addr\":\"126A, Kovarthanapuram 5th Street, Vagaikulam\",\"gender\":null,\"userdet\":{\"fname\":\"Karthikeyan\",\"lname\":\"Elumalai\",\"dob\":\"1991-12-12\",\"vhregno\":null,\"phno\":\"8524018185\",\"adhno\":\"883196473649\",\"addr\":\"126A, Kovarthanapuram 5th Street, Vagaikulam\",\"gender\":null,\"userdet\":null,\"cmpdet\":null,\"loandet\":null,\"pass\":null},\"cmpdet\":{\"cmpname\":\"Susee Finance\",\"cmpgstin\":\"454646AH4652766\",\"cmpaddr\":\"t\nTamil sangam\",\"cmpcity\":\"Madurai\",\"cmppin\":625001,\"cmpphno\":9764619466,\"cmpaphno\":null,\"cmpdesg\":\"MD Driver\",\"cmpslry\":20000},\"loandet\":[{\"bnkfinname\":\"SBI\",\"loantype\":\"Home\",\"loanamt\":5000000,\"totdues\":240,\"cmpdues\":36}],\"pass\":\"4567\"}",
+                "loandet": "[{\"bnkfinname\":\"SBI\",\"loantype\":\"Home\",\"loanamt\":5000000,\"totdues\":240,\"cmpdues\":36}]"
+            }
+        ]
+    }
+}

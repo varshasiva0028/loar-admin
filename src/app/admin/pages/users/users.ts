@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersService, UserModel } from './users.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-users',
@@ -19,7 +21,7 @@ export class Users implements OnInit {
   public isDeleteModalOpen: boolean = false;
   public userToDelete: UserModel | null = null;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService,private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -28,10 +30,12 @@ export class Users implements OnInit {
   private loadUsers(): void {
     this.usersService.getUsers().subscribe({
       next: (data) => {
+        console.log("API DATA", data);
         this.users = data;
+         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Error loading users:', err);
+        console.error("API ERROR", err);
       }
     });
   }
@@ -41,6 +45,9 @@ export class Users implements OnInit {
     this.searchQuery = target.value;
     this.usersService.searchUsers(this.searchQuery).subscribe({
       next: (data) => {
+        console.log('Component Users:', data);
+        console.log('Length:', data.length);
+
         this.users = data;
       },
       error: (err) => {
