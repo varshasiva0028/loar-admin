@@ -27,18 +27,18 @@ export class Users implements OnInit {
     this.loadUsers();
   }
 
-  private loadUsers(): void {
-    this.usersService.getUsers().subscribe({
-      next: (data) => {
-        console.log("API DATA", data);
-        this.users = data;
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error("API ERROR", err);
-      }
-    });
-  }
+ public loadUsers(): void {
+  this.usersService.getUsers().subscribe({
+    next: (data) => {
+      console.log("API DATA", data);
+      this.users = data;
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      console.error("API ERROR", err);
+    }
+  });
+}
 
   public onSearch(event: Event): void {
     const target = event.target as HTMLInputElement;

@@ -40,19 +40,19 @@ export class Transaction implements OnInit {
     this.loadTransactions();
   }
 
-  private loadTransactions(): void {
-    console.log('Component: loadTransactions() started');
-    this.transactionService.getTransactions().subscribe({
-      next: (data: TransactionModel[]) => {
-        console.log("Component: API successfully returned transactions:", data);
-        this.transactions = data;
-        this.cdr.detectChanges();
-      },
-      error: (err: unknown) => {
-        console.error('Component: Error fetching transactions:', err);
-      }
-    });
-  }
+ public loadTransactions(): void {
+  console.log('Component: loadTransactions() started');
+  this.transactionService.getTransactions().subscribe({
+    next: (data: TransactionModel[]) => {
+      console.log("Component: API successfully returned transactions:", data);
+      this.transactions = data;
+      this.cdr.detectChanges();
+    },
+    error: (err: unknown) => {
+      console.error('Component: Error fetching transactions:', err);
+    }
+  });
+}
 
   public onSearch(event: Event): void {
 
