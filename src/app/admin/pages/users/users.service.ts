@@ -19,7 +19,7 @@ export interface UserModel {
 })
 export class UsersService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private apiUrl = 'http://tst1.loomkji.in/loarphp/agetaccs.php';
 
@@ -64,7 +64,7 @@ export class UsersService {
           });
 
           return {
-            id: `USR${(index + 1).toString().padStart(5, '0')}`,
+            id: `USR${(response.data.prf.length - index).toString().padStart(5, '0')}`,
             name: item.name || '',
             gender:
               item.gend?.toLowerCase() === 'female'

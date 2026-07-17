@@ -16,6 +16,7 @@ export interface TransactionModel {
     | 'Cancelled'
     | 'Rejected'
     | 'Refunded';
+  mode: 'UPI' | 'Credit Card' | 'Debit Card' | 'Net Banking' | 'Wallet' | 'Cash' ;
 }
 
 @Injectable({
@@ -32,7 +33,8 @@ export class TransactionService {
       type: 'Credit',
       nbfcName: 'Bajaj Finance',
       transactionDate: '09 Jul 2026 10:30 AM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'UPI'
     },
     {
       userId: 'U10002',
@@ -42,7 +44,8 @@ export class TransactionService {
       type: 'Debit',
       nbfcName: 'HDFC Credila',
       transactionDate: '09 Jul 2026 11:15 AM',
-      status: 'Processing'
+      status: 'Processing',
+      mode: 'Credit Card'
     },
     {
       userId: 'U10003',
@@ -52,7 +55,8 @@ export class TransactionService {
       type: 'Credit',
       nbfcName: 'Tata Capital',
       transactionDate: '09 Jul 2026 12:05 PM',
-      status: 'Initiated'
+      status: 'Initiated',
+      mode: 'Debit Card'
     },
     {
       userId: 'U10004',
@@ -62,7 +66,8 @@ export class TransactionService {
       type: 'Debit',
       nbfcName: 'Mahindra Finance',
       transactionDate: '08 Jul 2026 09:45 AM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'Net Banking'
     },
     {
       userId: 'U10005',
@@ -72,7 +77,8 @@ export class TransactionService {
       type: 'Credit',
       nbfcName: 'Shriram Finance',
       transactionDate: '08 Jul 2026 02:30 PM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'Wallet'
     },
     {
       userId: 'U10006',
@@ -82,7 +88,8 @@ export class TransactionService {
       type: 'Debit',
       nbfcName: 'L&T Finance',
       transactionDate: '07 Jul 2026 04:15 PM',
-      status: 'Cancelled'
+      status: 'Cancelled',
+      mode: 'Cash'
     },
     {
       userId: 'U10007',
@@ -92,7 +99,8 @@ export class TransactionService {
       type: 'Credit',
       nbfcName: 'Aditya Birla Finance',
       transactionDate: '07 Jul 2026 06:00 PM',
-      status: 'Rejected'
+      status: 'Rejected',
+      mode: 'Net Banking'
     },
     {
       userId: 'U10008',
@@ -102,7 +110,8 @@ export class TransactionService {
       type: 'Debit',
       nbfcName: 'Muthoot Finance',
       transactionDate: '06 Jul 2026 10:00 AM',
-      status: 'Refunded'
+      status: 'Refunded',
+      mode: 'Net Banking'
     },
     {
       userId: 'U10009',
@@ -112,7 +121,8 @@ export class TransactionService {
       type: 'Credit',
       nbfcName: 'Tata Capital',
       transactionDate: '06 Jul 2026 11:30 AM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'Net Banking'
     },
     {
       userId: 'U10010',
@@ -122,7 +132,8 @@ export class TransactionService {
       type: 'Debit',
       nbfcName: 'Bajaj Finance',
       transactionDate: '05 Jul 2026 03:20 PM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'UPI'
     }
   ];
 

@@ -17,6 +17,7 @@ export interface TransactionModel {
     | 'Cancelled'
     | 'Rejected'
     | 'Refunded';
+  mode: 'UPI' | 'Credit Card' | 'Debit Card' | 'Net Banking' | 'Wallet' | 'Cash' | 'NEFT' | 'RTGS' | 'IMPS';
 }
 
 export interface ChartData {
@@ -39,7 +40,8 @@ export class TransactionsService {
       type: 'Credit',
       nbfcName: 'HDFC Credila',
       transactionDate: '09 Jul 2026 10:30 AM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'UPI'
     },
     {
       userId: 'U10002',
@@ -50,7 +52,8 @@ export class TransactionsService {
       type: 'Debit',
       nbfcName: 'HDFC Credila',
       transactionDate: '09 Jul 2026 11:15 AM',
-      status: 'Processing'
+      status: 'Processing',
+      mode: 'Credit Card'
     },
     // NBFC002 - Bajaj Finance
     {
@@ -62,7 +65,8 @@ export class TransactionsService {
       type: 'Credit',
       nbfcName: 'Bajaj Finance',
       transactionDate: '09 Jul 2026 12:05 PM',
-      status: 'Initiated'
+      status: 'Initiated',
+      mode: 'Debit Card'
     },
     {
       userId: 'U10004',
@@ -73,7 +77,8 @@ export class TransactionsService {
       type: 'Debit',
       nbfcName: 'Bajaj Finance',
       transactionDate: '08 Jul 2026 09:45 AM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'Net Banking'
     },
     // NBFC003 - Tata Capital
     {
@@ -85,7 +90,8 @@ export class TransactionsService {
       type: 'Credit',
       nbfcName: 'Tata Capital',
       transactionDate: '08 Jul 2026 02:30 PM',
-      status: 'Success'
+      status: 'Success',
+      mode: 'Wallet'
     },
     {
       userId: 'U10006',
@@ -96,7 +102,8 @@ export class TransactionsService {
       type: 'Debit',
       nbfcName: 'Tata Capital',
       transactionDate: '07 Jul 2026 04:15 PM',
-      status: 'Cancelled'
+      status: 'Cancelled',
+      mode: 'Cash'
     }
   ];
 

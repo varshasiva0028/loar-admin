@@ -54,7 +54,7 @@
                 <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Username</th>
                 <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Transaction ID</th>
                 <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-end">Amount</th>
-                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Type</th>
+                <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Mode</th>
                 <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">[N]BFC Name</th>
                 <th scope="col" class="py-3 px-3 text-secondary fw-semibold small">Date & Time</th>
                 <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">Status</th>
@@ -69,10 +69,8 @@
                   ₹{{ txn.amount | number }}
                 </td>
                 <td class="px-3 py-2.5 text-center">
-                  <span class="badge"
-                    [ngClass]="txn.type === 'Credit' ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-danger-subtle text-danger border border-danger-subtle'"
-                    style="font-size: 0.75rem; padding: 4px 8px;">
-                    {{ txn.type === 'Credit' ? 'C' : 'D' }}
+                  <span class="badge bg-light text-secondary border border-secondary-subtle px-2.5 py-1.5 fw-semibold" style="font-size: 0.75rem;">
+                    {{ txn.mode }}
                   </span>
                 </td>
                 <td class="px-3 py-2.5 text-secondary fw-medium small">{{ txn.nbfcName }}</td>
