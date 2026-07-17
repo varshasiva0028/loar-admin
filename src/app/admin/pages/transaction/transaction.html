@@ -51,6 +51,9 @@
               <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center">
                 Status
               </th>
+              <th scope="col" class="py-3 px-3 text-secondary fw-semibold small text-center" style="width: 100px;">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -83,10 +86,17 @@
                   {{ txn.status }}
                 </span>
               </td>
+              <td class="px-3 py-2.5 text-center">
+                <div class="d-flex justify-content-center gap-2 align-items-center">
+                  <button class="action-btn action-btn-view" title="View Transaction" (click)="onViewTransaction(txn)">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <!-- Empty State -->
             <tr *ngIf="transactions.length === 0">
-              <td colspan="7" class="text-center py-5">
+              <td colspan="8" class="text-center py-5">
                 <div class="text-muted mb-2">
                   <i class="bi bi-inbox fs-1 opacity-50"></i>
                 </div>
@@ -104,3 +114,76 @@
     </div>
   </div>
 </div>
+
+  <!-- View Modal Overlay -->
+  <div class="modal fade show d-block" tabindex="-1" *ngIf="isDetailsModalOpen && selectedTransaction"
+    style="background-color: rgba(0,0,0,0.5);" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 rounded-4 shadow">
+        <div class="modal-header border-bottom border-light bg-light rounded-top-4 py-3">
+          <h5 class="modal-title fw-bold text-dark fs-5">Transaction Details</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeDetailsModal()"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Row 1 -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">User ID</small>
+              <span class="fw-bold text-dark font-monospace">{{ selectedTransaction.userId }}</span>
+            </div>
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Username</small>
+              <span class="fw-bold text-dark">{{ selectedTransaction.username }}</span>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Transaction ID</small>
+              <span class="fw-bold text-secondary font-monospace">{{ selectedTransaction.transactionId }}</span>
+            </div>
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Phone Number</small>
+              <span class="fw-bold text-dark">{{ selectedTransaction.phoneNumber }}</span>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Amount</small>
+              <span class="fw-bold fs-6" [ngClass]="getAmountClass(selectedTransaction.type)">
+                ₹{{ selectedTransaction.amount | number }}
+              </span>
+            </div>
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Mode</small>
+              <span class="badge bg-light text-secondary border border-secondary-subtle px-2.5 py-1.5 fw-semibold" style="font-size: 0.75rem;">
+                {{ selectedTransaction.mode }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Date & Time</small>
+              <span class="fw-semibold text-secondary small">{{ selectedTransaction.transactionDate }}</span>
+            </div>
+            <div class="col-6">
+              <small class="text-secondary d-block mb-1">Status</small>
+              <span class="badge px-2.5 py-1.5 rounded-pill fs-8 fw-semibold shadow-xs"
+                [ngClass]="getStatusBadgeClass(selectedTransaction.status)" style="font-size: 0.75rem;">
+                {{ selectedTransaction.status }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top border-light py-3">
+          <button type="button" class="btn btn-secondary rounded-3 px-4 py-2 fw-semibold"
+            (click)="closeDetailsModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

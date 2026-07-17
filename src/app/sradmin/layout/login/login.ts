@@ -27,12 +27,12 @@ export class SrLogin implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
     // If already logged in as superadmin, redirect to superadmin dashboard immediately
     if (this.authService.getRole() === 'superadmin') {
       this.router.navigate(['/sradmin/dashboard']);
       return;
     }
-    this.initForm();
   }
 
   private initForm(): void {

@@ -112,3 +112,42 @@ thead th {
 .search-input-group:focus-within .form-control {
   border-color: #198754 !important;
 }
+
+/* --- Premium Action Buttons --- */
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.2s ease, 
+              color 0.2s ease, 
+              box-shadow 0.2s ease;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* View Button */
+.action-btn-view {
+  background-color: #e8f5e9 !important;
+  color: #198754 !important;
+  box-shadow: 0 2px 4px rgba(25, 135, 84, 0.08);
+}
+.action-btn-view:hover {
+  background-color: #198754 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 10px rgba(25, 135, 84, 0.25);
+}
+
+/* Modal styling tweaks */
+.modal-header .btn-close {
+  box-shadow: none;
+}
+
+.modal-dialog {
+  transition: transform 0.3s ease-out;
+}

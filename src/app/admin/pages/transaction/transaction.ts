@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
@@ -18,8 +18,22 @@ export class Transaction implements OnInit {
   public transactions: TransactionModel[] = [];
   public searchQuery: string = '';
 
+  public selectedTransaction: TransactionModel | null = null;
+  public isDetailsModalOpen = false;
+
+  public onViewTransaction(txn: TransactionModel): void {
+    this.selectedTransaction = txn;
+    this.isDetailsModalOpen = true;
+  }
+
+  public closeDetailsModal(): void {
+    this.isDetailsModalOpen = false;
+    this.selectedTransaction = null;
+  }
+
   constructor(
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -27,19 +41,17 @@ export class Transaction implements OnInit {
   }
 
   private loadTransactions(): void {
-
+    console.log('Component: loadTransactions() started');
     this.transactionService.getTransactions().subscribe({
-
       next: (data: TransactionModel[]) => {
+        console.log("Component: API successfully returned transactions:", data);
         this.transactions = data;
+        this.cdr.detectChanges();
       },
-
       error: (err: unknown) => {
-        console.error('Error fetching transactions:', err);
+        console.error('Component: Error fetching transactions:', err);
       }
-
     });
-
   }
 
   public onSearch(event: Event): void {
@@ -52,6 +64,7 @@ export class Transaction implements OnInit {
 
       next: (data: TransactionModel[]) => {
         this.transactions = data;
+        this.cdr.detectChanges();
       },
 
       error: (err: unknown) => {

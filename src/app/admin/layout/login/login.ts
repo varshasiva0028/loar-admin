@@ -27,12 +27,12 @@ export class Login implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
     // If already logged in as admin, redirect to admin dashboard immediately
     if (this.authService.getRole() === 'admin') {
       this.router.navigate(['/admin/dashboard']);
       return;
     }
-    this.initForm();
   }
 
   private initForm(): void {

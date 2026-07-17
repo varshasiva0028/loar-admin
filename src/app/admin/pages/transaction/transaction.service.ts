@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 export interface TransactionModel {
   userId: string;
@@ -16,7 +17,12 @@ export interface TransactionModel {
     | 'Cancelled'
     | 'Rejected'
     | 'Refunded';
+<<<<<<< HEAD
   mode: 'UPI' | 'Credit Card' | 'Debit Card' | 'Net Banking' | 'Wallet' | 'Cash' ;
+=======
+  mode: 'UPI' | 'Credit Card' | 'Debit Card' | 'Net Banking' | 'Wallet' | 'Cash';
+  phoneNumber: string;
+>>>>>>> 1bc09b0 (Transaction Completed)
 }
 
 @Injectable({
@@ -24,6 +30,7 @@ export interface TransactionModel {
 })
 export class TransactionService {
 
+<<<<<<< HEAD
   private readonly mockTransactions: TransactionModel[] = [
     {
       userId: 'U10001',
@@ -136,29 +143,83 @@ export class TransactionService {
       mode: 'UPI'
     }
   ];
+=======
+  private apiUrl = 'http://tst1.loomkji.in/loarphp/agettrs.php';
+>>>>>>> 1bc09b0 (Transaction Completed)
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getTransactions(): Observable<TransactionModel[]> {
-    return of(this.mockTransactions);
+    console.log('Service: fetching from API:', this.apiUrl);
+    return this.http.get<any>(this.apiUrl).pipe(
+      map(response => {
+        console.log('Service: API response raw data:', response);
+        if (!response || !response.data || !response.data.trns) {
+          console.warn('Service: API returned empty or invalid structure!');
+          return [];
+        }
+        const mapped = response.data.trns.map((item: any, index: number) => {
+          return {
+            userId: item.cphno ? `USR${item.cphno.substring(6)}` : `USR${index.toString().padStart(5, '0')}`,
+            username: (item.name || '').trim(),
+            transactionId: item.tid || '',
+            amount: Number(item.amt) || 0,
+            type: (index % 2 === 0) ? 'Credit' : 'Debit',
+            nbfcName: 'Loomkji Finance',
+            transactionDate: item.trdt || '',
+            status: this.mapStatus(item.stat),
+            mode: this.mapMode(item.trmd),
+            phoneNumber: item.cphno || ''
+          } as TransactionModel;
+        });
+        console.log('Service: Mapped transactions list:', mapped);
+        return mapped;
+      })
+    );
   }
 
   searchTransactions(keyword: string): Observable<TransactionModel[]> {
-
-    if (!keyword.trim()) {
-      return of(this.mockTransactions);
-    }
-
-    const search = keyword.toLowerCase();
-
-    const filtered = this.mockTransactions.filter(transaction =>
-      transaction.userId.toLowerCase().includes(search) ||
-      transaction.username.toLowerCase().includes(search) ||
-      transaction.transactionId.toLowerCase().includes(search) ||
-      transaction.nbfcName.toLowerCase().includes(search)
+    return this.getTransactions().pipe(
+      map(transactions => {
+        if (!keyword.trim()) {
+          return transactions;
+        }
+        const search = keyword.toLowerCase();
+        return transactions.filter(transaction =>
+          transaction.userId.toLowerCase().includes(search) ||
+          transaction.username.toLowerCase().includes(search) ||
+          transaction.transactionId.toLowerCase().includes(search)
+        );
+      })
     );
-
-    return of(filtered);
   }
 
+  private mapStatus(stat: string): TransactionModel['status'] {
+    switch (stat) {
+      case '1':
+        return 'Initiated';
+      case '2':
+        return 'Processing';
+      case '3':
+        return 'Refunded';
+      case '4':
+        return 'Cancelled';
+      case '5':
+        return 'Rejected';
+      case '6':
+      default:
+        return 'Success';
+    }
+  }
+
+  private mapMode(mode: string): TransactionModel['mode'] {
+    const cleanMode = (mode || '').toLowerCase().trim();
+    if (cleanMode === 'upi') return 'UPI';
+    if (cleanMode === 'credit card' || cleanMode === 'credit_card' || cleanMode === 'card') return 'Credit Card';
+    if (cleanMode === 'debit card' || cleanMode === 'debit_card') return 'Debit Card';
+    if (cleanMode === 'net banking' || cleanMode === 'net_banking' || cleanMode === 'netbanking') return 'Net Banking';
+    if (cleanMode === 'wallet') return 'Wallet';
+    if (cleanMode === 'cash') return 'Cash';
+    return 'UPI';
+  }
 }
